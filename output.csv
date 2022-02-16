@@ -1,0 +1,40 @@
+,User,Patient,Paired_Question,Similarity_Score,Polarity,Subjectivity,RepeatedWord_words,RepeatedWord_counts,Patient_Named,Intro_scores,Scoring
+0,"Uh, don't push it.",I'm not sure what you mean.,Are we done here?,0.70184654,0.0,0.0,[],0,none,none,Negative
+1,But just pull my code.,Can you rephrase that?,Do you have an advance directive?,0.60503864,0.0,0.0,[],0,none,0,Positive
+2,And then I just started with you.,I don't know what that means.,Tell me how that makes you feel.,0.70688444,0.0,0.0,[],0,none,none,Positive
+3,Okay.,I'm not sure what you mean.,Are we done here?,0.7426584,0.5,0.5,[],0,none,0,Unknown
+4,Because you.,Can you rephrase that?,Tell me how that makes you feel.,0.74335754,0.0,0.0,[],0,none,0,Positive
+5,"Uh, huh. He can make any changes.",I don't know what that means.,Do you remember what was going on when that started?,0.53877276,0.0,0.0,[],0,none,0,Positive
+6,"Yeah, just change the hard coded.",I'm not sure what you mean.,Do you have an advance directive?,0.5928454,-0.2916666666666667,0.5416666666666666,[],0,none,0,Positive
+7,"API key that you pulled out and just replaced it with the data and read. Oh, okay.",Can you rephrase that?,Do you have easy/adequate access to pharmacies for medications?,0.58400863,0.25,0.75,[],0,none,0,Positive
+8,"So, no.",I don't know what that means.,Have you lost vision?,0.6764711,0.0,0.0,[],0,none,0,Negative
+9,I would probably like the court is rang right now. I don't want to make any changes.,I'm not sure what you mean.,"Now I have to ask, and this is important: do you have a history of using any drugs or are you using now? You will not get in trouble, but I need to know just in case it might be influencing what's going on.",0.6800643,0.2857142857142857,0.5357142857142857,[],0,none,0,Positive
+10,I do it's whatever.,Can you rephrase that?,Are we done here?,0.68443197,0.0,0.0,[],0,none,0,Unknown
+11,Let's do something else.,I don't know what that means.,Do you feel a lack of coordination?,0.7171515,0.0,0.0,[],0,none,0,Unknown
+12,"I let me shut the, like, everything is done right now. Let's finish out, let submit the project first and finish out some stuff. Okay.",I'm not sure what you mean.,Are we done here?,0.66773415,0.3452380952380952,0.45634920634920634,[],0,none,0,Positive
+13,That's the new pitch pitch.,Can you rephrase that?,Any new exercise or activities?,0.5832582,0.13636363636363635,0.45454545454545453,[],0,none,0,Positive
+14,Maybe to finish out the pitch.,I don't know what that means.,Anything else you can think of before we finish?,0.75491506,0.0,0.0,[],0,none,0,Positive
+15,We're going to let her run it one more time. Just to be searched. Okay.,I'm not sure what you mean.,Anything else you can think of before we finish?,0.6382787,0.5,0.5,[],0,none,0,Positive
+16,"Uh, she'll work.",Can you rephrase that?,Tell me about your work.,0.6161314,0.0,0.0,[],0,none,0,Positive
+17,Sure still work.,I don't know what that means.,Are you in good spirits most of the time?,0.57161343,0.5,0.8888888888888888,['sure'],1,none,0,Positive
+18,"No, we only got to work.",I'm not sure what you mean.,Are we done here?,0.6704309,0.0,1.0,[],0,none,0,Unknown
+19,It's not working again.,No.,Have you lost vision?,0.8090626,0.0,0.0,[],0,none,0,Negative
+20,"Yeah, I think I fucked up.",That's not a problem for me.,How severe is your constipation?,0.80504555,-0.6,0.7,[],0,none,0,Negative
+21,"You have like unlimited keys anyway, don't worry about it. Just generate another key and put it in.",Can you rephrase that?,"Have you ever had times when your mood was good, or too good, for no reason?",0.46857047,0.0,1.0,[],0,none,0,Positive
+22,"Oh, gosh. Well, it says a darn thing that he had to be.",I don't know what that means.,What symptom is the most distressing for you?,0.7559329,0.0,0.0,[],0,none,0,Positive
+23,It's not defined.,I'm not sure what you mean.,Do you feel a lack of coordination?,0.75034565,0.0,0.0,[],0,none,0,Unknown
+24,"Oh, my God.",Can you rephrase that?,How severe is your constipation?,0.65445,0.0,0.0,[],0,none,0,Negative
+25,Fuck.,I don't know what that means.,How severe is your constipation?,0.681118,-0.4,0.6,[],0,none,0,Negative
+26,How was it?,I'm in a lot of pain.,What happened?,0.9169884,0.0,0.0,[],0,none,0,Positive
+27,I don't.,I'm not sure what you mean.,Have you lost vision?,0.6838692,0.0,0.0,[],0,none,0,Unknown
+28,Because another code does work.,Can you rephrase that?,Do you have a mole that has changed?,0.6985065,0.0,0.0,[],0,none,0,Positive
+29,Perfect.,I don't know what that means.,Are we done here?,0.6126224,1.0,1.0,[],0,none,0,Positive
+30,Okay.,I'm not sure what you mean.,Are we done here?,0.7426584,0.5,0.5,[],0,none,0,Unknown
+31,Okay. I think.,Can you rephrase that?,Are we done here?,0.7914323,0.5,0.5,[],0,none,0,Positive
+32,"I think most of the stuff is done now, but let's talk with duke man. Big pro.",I don't know what that means.,How old was your father?,0.58069247,0.25,0.3,[],0,none,0,Positive
+33,"Let them do the pitch thing, right.",I'm not sure what you mean.,Tell me how that makes you feel.,0.68292195,0.2857142857142857,0.5357142857142857,[],0,none,0,Positive
+34,Just the one more final commit.,Can you rephrase that?,Anything else you can think of before we finish?,0.72235394,0.25,0.75,[],0,none,0,Positive
+35,Now it works. I was just checked out.,I don't know what that means.,Are we done here?,0.70133066,0.0,0.0,[],0,none,0,Positive
+36,Okay.,I'm not sure what you mean.,Are we done here?,0.7426584,0.5,0.5,[],0,none,0,Unknown
+37,Mr Redford.,Can you rephrase that?,Are you Mr. Bradford?,0.6795647,0.0,0.0,[],0,none,0,Positive
+38,Are you feeling.,I've had really bad pain in my belly for the last 4 hours. My wife brought me in because it's so bad.,How are you doing?,0.8915078,0.0,0.0,[],0,none,0,Positive

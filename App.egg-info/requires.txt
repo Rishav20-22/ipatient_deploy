@@ -1,0 +1,7 @@
+flask
+requests
+pyaudio
+rev-ai
+six
+flask-bootstrap
+flask-socketio

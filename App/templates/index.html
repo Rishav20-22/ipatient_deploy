@@ -1,0 +1,124 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="../static\index.css">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script type="text/javascript">
+  var socket = null;
+  function closeSocket() {
+    socket.emit('my event', {
+      status: 'close'
+    });
+    socket.close();
+  }
+
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+  
+  function openSocket() {
+    socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('connect', function() {
+      console.log("connected");
+      socket.emit('my event', {
+        status: 'open'
+      });
+    });
+    socket.on('data', function( msg ) {
+      console.log( msg );
+      if( typeof msg.content !== 'undefined' && msg.content.length > 0 ) {
+        $( 'h3' ).remove();
+        
+        $( 'div.message_holder' ).append( '<div style="text-align: left;"><b style="color: black !important;font-size: 20px;">' + msg.content + '</div>' );
+        $( 'div.message_holder' ).append( '<div style="text-align: left;"><b style="color: black !important;font-size: 16px;">' + msg.type + '</div>' );
+        if (msg.type === "final") {
+          quill.insertText(quill.getLength(), msg.content);
+        }
+      }
+    });
+  }
+  function say() {
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    msg.voice = voices[10];
+    msg.voiceURI = "native";
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 0.8;
+    msg.text = quill.getText(0, quill.getLength());
+    msg.lang = 'en-US';
+    speechSynthesis.speak(msg);
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="inner">
+          <h3 class="masthead-brand" style="color: black !important">iPatient</h3>
+          <!-- <img src="logo.png"><img> -->
+          <br>
+          <br>
+        </div>
+
+        <div class="inner cover">
+          <h1 class="cover-heading" style="color: black !important">Flask webapp for iPatient deployed on Heroku</h1>
+          
+        </div>
+        <form action="http://localhost:5000/" method="POST">
+          <label form="description">Text-based Input:</label>
+          <input type="text" id="description" name="description">
+          <button type="submit" class=cv_btn>Submit</button>
+  
+        </form>
+        <div class="buttons">
+          <br>
+          <br>
+          <div class="row">
+            <button type="button" class="btn btn-default btn-lg" onclick="openSocket()">
+              <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Record
+            </button>
+            <button type="button" class="btn btn-default btn-lg" onclick="say()">
+                <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Speak
+              </button>
+          </div>
+        </div>
+        <br>
+        
+        <div class="row editorRow">
+            <h3 style='color: rgb(22, 2, 31);font-size: 20px;'>No message yet..</h3>
+            <div class="final_message"></div>
+            <div class="message_holder"></div>
+          
+            <br>
+          <div id="editor">
+            <p>Here are your transcriptions:</p>
+            <p><br></p>
+          </div>
+        </div>
+
+        <div class="mastfoot">
+          <div class="inner">
+            <p style="color: black !important;"></p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+{% endblock %}
