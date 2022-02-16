@@ -13,6 +13,35 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script type="text/javascript">
   var socket = null;
+
+
+  $(document).ready(function() {
+
+var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+socket.on('connect', function() {
+  socket.send('User has connected!');
+});
+
+socket.on('message', function(msg) {
+  $( 'h3' ).remove();
+        if(msg != "Just started up again 2 days ago. I hadn't had any problems since they shocked me a year ago.")
+        {
+          $( 'div.message_holder' ).append( '<div style="text-align: left;"><b style="color: black !important;font-size: 16px;">' + msg + '</div>' );
+          }
+        if (msg.type === "final") {
+          quill.insertText(quill.getLength(), msg.content);
+        }
+  console.log('Received message');
+});
+
+$('#sendbutton').on('click', function() {
+  socket.send($('#myMessage').val());
+  $('#myMessage').val('');
+});
+
+});
+
   function closeSocket() {
     socket.emit('my event', {
       status: 'close'
@@ -79,12 +108,20 @@
           <h1 class="cover-heading" style="color: black !important">Flask webapp for iPatient deployed on Heroku</h1>
           
         </div>
-        <form action="http://localhost:5000/" method="POST">
-          <label form="description">Text-based Input:</label>
-          <input type="text" id="description" name="description">
-          <button type="submit" class=cv_btn>Submit</button>
-  
-        </form>
+        <div>
+          <style>
+            .text{
+                background-color: black;
+                color: white;
+            }
+            body{
+              color:blue;
+            }
+        </style>
+        <ul id="messages"></ul>
+        <input type="text" id="myMessage">
+        <button id="sendbutton">Input your response</button>
+      </div>
         <div class="buttons">
           <br>
           <br>
@@ -98,7 +135,8 @@
           </div>
         </div>
         <br>
-        
+        <h1 class="cover-heading" style="color: black !important">Patient response</h1>
+
         <div class="row editorRow">
             <h3 style='color: rgb(22, 2, 31);font-size: 20px;'>No message yet..</h3>
             <div class="final_message"></div>

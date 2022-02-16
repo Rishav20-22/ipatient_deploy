@@ -332,7 +332,67 @@ def get_subjectivity(text):
       subjectivity_list.append(subjectivity)
     return subjectivity_list
 
+def chat_text(text):
+  user_dialogue = []
+  patient_dialogue = []
+  paired_qs = []
+  similarity_scores = []
 
+  unclear_questions = ["I'm not sure what you mean.", "Can you rephrase that?", "I don't know what that means."]
+  unclear_index = 0       
+
+  global add_bodypart_count
+  add_bodypart_count = 0             
+
+  global patient_name_full
+  patient_name_full = "Tom Bradford"
+  global patient_name_first
+  patient_name_first = "Tom"
+  global patient_name_last
+  patient_name_last = "Bradford"
+  global patient_title
+  patient_title = "Mr."
+
+  global bodyPart
+  bodyPart = 'none'
+
+  global user_name_first
+  user_name_first = "Rishav"
+  global user_name_last
+  user_name_last = "Kumar"
+  global user_title
+  user_title = "Dr."
+  global user_jobFunction
+  user_jobFunction = "Nurse"
+  user_dialogue.append(text)
+  text = seperate_question(text)
+  get_bodyPart(text)
+  response_values = get_response(text)
+
+  response = response_values['response']
+  paired_q = response_values['paired_q']
+  similarity = response_values['similarity']
+
+  paired_qs.append(paired_q)
+  similarity_scores.append(similarity)
+  get_bodyPart(response)
+  return response
+  
+  if similarity < 0.80:
+    response = unclear_questions[unclear_index]
+    unclear_index += 1
+    if unclear_index > 2:
+      unclear_index = 0
+
+  patient_dialogue.append(response)
+  
+  print("Patient:", response)
+  
+  socketio.emit('data', {
+              'content': text,
+              'type': response,
+          })
+  time.sleep(1)
 
 def chat(socketio):
 
@@ -370,61 +430,7 @@ def chat(socketio):
   global user_jobFunction
   user_jobFunction = "Nurse"
   
-  print("\nThank you, the patient is ready for you. \n\nPatient Information \nName: Tom Bradford \nAge: 71\n\n(Ask a question, or type 'exit' to quit.)\n")
-
-  with MicrophoneStream(rate, chunk) as stream:
   
-    try:
-      
-        response_gen = streamclient.start(stream.generator())
-
-        for response in response_gen:
-            y = json.loads(response)
-            
-            text = ""
-            if y["type"] == "final":
-                for i in y["elements"]:
-                    text+=i["value"]
-                
-            if  text=="":
-              continue
-            print("My speech to text response:",text)
-            
-            if(text=="Exit."):
-              break
-            user_dialogue.append(text)
-            text = seperate_question(text)
-            get_bodyPart(text)
-            response_values = get_response(text)
-
-            response = response_values['response']
-            paired_q = response_values['paired_q']
-            similarity = response_values['similarity']
-
-            paired_qs.append(paired_q)
-            similarity_scores.append(similarity)
-            get_bodyPart(response)
-
-            if similarity < 0.80:
-              response = unclear_questions[unclear_index]
-              unclear_index += 1
-              if unclear_index > 2:
-                unclear_index = 0
-
-            patient_dialogue.append(response)
-            
-            print("Patient:", response)
-            
-            socketio.emit('data', {
-                        'content': text,
-                        'type': response,
-                    })
-            time.sleep(1)
-            
-            
-    except KeyboardInterrupt:
-        streamclient.client.send("EOS")
-        pass
 
   
   print("Thank you!")
