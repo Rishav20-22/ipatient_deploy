@@ -11,5 +11,5 @@ echo $FLASK_ENV
 pip3 install -e .
 
 
-python3 ./App/__init__.py
+python3.9 ./App/__init__.py
 
