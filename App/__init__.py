@@ -7,7 +7,7 @@ import json
 from flask import render_template, redirect, url_for, request
 from flask_socketio import SocketIO, send, emit
 from flask_bootstrap import Bootstrap
-from App.translationService import chat, chat_text
+from App.translationService import  chat_text
 
 app = flask.Flask(__name__)
 app.config['SECRET_KEY'] = 'hackmit2021'
