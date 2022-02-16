@@ -31,4 +31,4 @@ def handle_my_custom_event(data):
 Bootstrap(app)
 
 if __name__ == '__main__':
-    socketio.run(app, host='127.0.0.1', port=80)
+    socketio.run(app, host='0.0.0.0', port=80)
